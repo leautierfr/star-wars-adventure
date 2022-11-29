@@ -75,6 +75,7 @@ def has_loot?
     false
   end
 end
+
 ##################################################################
 
 # Variables
@@ -90,7 +91,7 @@ current_room = "create_room"
 
 # Introduction
 
-puts "You are Anakin Skywalker. You are on a mission with your master, Obi-Wan Kenobi, on a mysterious planet occupied by the CIS. You were ambushed by the droids and you got seperated from Obi-Wan. You now find yourself in a cave system with nothing but your wits and your lightsaber. Try and find your way out of the cave! You can search for loot on your way out."
+puts "You are Anakin Skywalker. You are on a mission with your master, Obi-Wan Kenobi, on a mysterious planet occupied by the CIS. You were ambushed by the droids and you got seperated from Obi-Wan. You now find yourself in a cave system with nothing but your wits. Try and find your way out of the cave, using the items you find to aid your escape!."
 puts "Watch out for foes that you may encounter!"
 puts "To play, type one of the given commands."
 
@@ -103,8 +104,6 @@ while health_points > 0 and not escaped
   actions = ["m - move", "s- search"]
 
   puts "Room # #{number_of_rooms_explored}"
-
-  puts current_room
   # Enemy Encounter
   if enemy
     puts "You have encountered a foe!"
