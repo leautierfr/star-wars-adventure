@@ -103,6 +103,7 @@ force_points = 10
 escaped = false
 enemy = false
 current_room = "create_room"
+inventory = 0
 
 #################################################################
 
