@@ -16,6 +16,8 @@ FINISHED
 - Rudimentary looting
 - Rudimentary, dice-based exploration and combat
 
+(CURRENTLY BROKEN)
+
 TO BE DEVELOPPED
 
 - Fully featured inventory system.
