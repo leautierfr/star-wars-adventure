@@ -14,7 +14,7 @@ end
 
 #########################################################################
 
-### RNG Generator
+### RNG
 
 def roll_dice(number_of_dice, size_of_dice)
   total = 0
@@ -28,13 +28,13 @@ end
 
 ### Game Methods
 
-def has_enemy?
-  if roll_dice(2, 6) >= 1
-    true
-  else
-    false
-  end
-end
+# def has_enemy?
+#   if roll_dice(2, 6) >= 1
+#     true
+#   else
+#     false
+#   end
+# end
 
 def has_escaped?
   if roll_dice(2, 6) >= 11
@@ -44,16 +44,8 @@ def has_escaped?
   end
 end
 
-# def enemy?
-#   if roll_dice(2, 6) >= 2
-#     true
-#   else
-#     false
-#   end
-# end
-
 def gundark
-  if roll_dice(2, 6) <= 1 && roll_dice(2, 6) >= 6
+  if roll_dice(2, 6) >= 1 && roll_dice(2, 6) <= 6
     true
   else
     false
@@ -61,7 +53,7 @@ def gundark
 end
 
 def dark_jedi
-  if roll_dice(2, 6) <= 7 && roll_dice(2, 6) >= 12
+  if roll_dice(2, 6) >= 7 && roll_dice(2, 6) <= 12
     true
   else
     false
@@ -85,7 +77,7 @@ def defeat_enemy?
 end
 
 def has_loot?
-  if roll_dice(2, 6) >= 8
+  if roll_dice(2, 6) >= 10
     true
   else
     false
@@ -123,15 +115,12 @@ while health_points > 0 and not escaped
 
   puts "Room # #{number_of_rooms_explored}"
   # Enemy Encounter
-  if has_enemy?
-    gundark || dark_jedi
-  end
   if gundark
     puts "You have encountered a Gundark! You will need a blaster to defeat it."
     actions << "f - fight"
     actions << "r - run"
   elsif dark_jedi
-    puts "Your foe is a Dark Jedi! You will need a lightsaber to defeat them."
+    puts "You have encountered a Dark Jedi! You will need a lightsaber to defeat them."
     actions << "f - fight"
     actions << "r - run"
   end
@@ -140,7 +129,7 @@ while health_points > 0 and not escaped
 
   # Enemy Attack
   player_action = gets.chomp
-  if gundark || dark_jedi && enemy_attack?
+  if gundark && enemy_attack? || dark_jedi && enemy_attack?
     health_points = health_points - 1
     puts "You have taken damage!"
   end
@@ -148,26 +137,24 @@ while health_points > 0 and not escaped
   if player_action == "m"
     current_room = create_room
     number_of_rooms_explored = number_of_rooms_explored + 1
-    gundark = has_enemy?
-    dark_jedi = has_enemy?
+    gundark || dark_jedi
     escaped = has_escaped?
   elsif player_action == "s"
     if has_loot?
       puts "You found #{loot}!"
       loot_count = loot_count + 1
-    elsif has_enemy?
-      gundark || dark_jedi
+    elsif gundark || dark_jedi
     else
       puts "You didn't find anything."
     end
 
-    #Rigged Condition - searching triggers enemies
+    # Searching triggers enemies
     if not enemy
-      enemy = has_enemy?
+      dark_jedi || gundark
     end
   elsif player_action == "f"
     if defeat_enemy?
-      enemy = false
+      gundark = false || dark_jedi = false
       puts "You defeated your foe!"
     else
       puts "You failed to defeat your foe."
@@ -178,7 +165,7 @@ while health_points > 0 and not escaped
 end
 
 if health_points > 0
-  puts "You escaped! The Hero With No Fear lives to fight another day!"
+  puts "You escaped! Anakin lives to fight another day!"
   puts "You explored #{number_of_rooms_explored} rooms"
   puts "you found #{loot_count} items of loot."
 else
