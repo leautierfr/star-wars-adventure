@@ -1,4 +1,4 @@
-# Ruby Adventure Game
+# Star Wars Adventure
 
 system "clear"
 
@@ -27,14 +27,6 @@ end
 ###########################################################################
 
 ### Game Methods
-
-# def has_enemy?
-#   if roll_dice(2, 6) >= 1
-#     true
-#   else
-#     false
-#   end
-# end
 
 def has_escaped?
   if roll_dice(2, 6) >= 12
@@ -96,6 +88,7 @@ escaped = false
 enemy = false
 current_room = "create_room"
 inventory = []
+dark_side = 0
 
 #################################################################
 
@@ -133,7 +126,7 @@ while health_points > 0 and not escaped
 
   # Enemy Attack
   player_action = gets.chomp
-  if gundark and enemy_attack? or dark_jedi and enemy_attack?
+  if gundark && enemy_attack? || dark_jedi && enemy_attack?
     health_points = health_points - 1
     puts "You have taken damage!"
   end
@@ -143,7 +136,7 @@ while health_points > 0 and not escaped
   elsif player_action == "m"
     current_room = create_room
     number_of_rooms_explored = number_of_rooms_explored + 1
-    gundark or dark_jedi
+    gundark || dark_jedi
     escaped = has_escaped?
   elsif player_action == "r"
     puts "You run to another room in the cave structure."
@@ -154,7 +147,10 @@ while health_points > 0 and not escaped
       loot1 = loot
       inventory << loot1
       puts "You found #{loot1}!"
-    elsif gundark or dark_jedi
+    elsif gundark
+      puts "A Gundark emerges from the darkness! You will need a blaster to defeat it."
+    elsif dark_jedi
+      puts "You are ambushed by a Dark Jedi! You will need a lightsaber to defeat them."
     else
       puts "You didn't find anything."
     end
@@ -172,7 +168,7 @@ end
 
 if health_points > 0
   puts "You escaped! Anakin lives to fight another day!"
-  puts "You explored #{number_of_rooms_explored} rooms"
+  puts "You explored #{number_of_rooms_explored} rooms."
 else
   puts "You did not make it out of the cave."
   puts "You explored #{number_of_rooms_explored} areas before your demise."
