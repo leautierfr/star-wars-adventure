@@ -14,14 +14,13 @@ FINISHED
 
 - Rudimentary exploration
 - Rudimentary looting
-- Rudimentary, dice-based exploration and combat
-
-(CURRENTLY BROKEN)
+- Rudimentary inventory system
+- Rudimentary dice-based exploration and combat
 
 TO BE DEVELOPPED
 
 - Fully featured inventory system.
 - Usable items.
-- Reworked combat.
-- Diverse enemies.
+- Improved combat.
 - Dark side system.
+- Error fixes
