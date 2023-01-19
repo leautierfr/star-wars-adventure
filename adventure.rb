@@ -82,7 +82,7 @@ end
 
 number_of_rooms_explored = 1
 loot1 = ""
-health_points = 20
+health_points = 10
 force_points = 10
 escaped = false
 enemy = false
@@ -104,7 +104,11 @@ puts "To play, type one of the given commands."
 while health_points > 0 and not escaped
   # Game Code
 
-  actions = ["m - move", "s- search", "i - check inventory"]
+  actions = ["m - move", "s- search room", "i - check inventory"]
+
+  if inventory.include? "a Stimpack"
+    actions << "h - heal"
+  end
 
   if gundark
     puts "You have encountered a Gundark! You will need a blaster to defeat it."
@@ -133,6 +137,9 @@ while health_points > 0 and not escaped
   # Player Commands
   if player_action == "i"
     puts inventory
+  elsif player_action == "h"
+    puts "You used a Stimpack to recover one health point"
+    health_points = health_points + 1
   elsif player_action == "m"
     current_room = create_room
     number_of_rooms_explored = number_of_rooms_explored + 1
