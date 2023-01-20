@@ -116,11 +116,19 @@ while health_points > 0 and not escaped
     if inventory.include? "a Blaster"
       actions << "f - fight"
     end
+
+    if inventory.include? "a Sith Holocron"
+      actions << "d - use the dark side"
+    end
   elsif dark_jedi
     puts "You have encountered a Dark Jedi! You will need a lightsaber to defeat them."
     actions << "r - run"
     if inventory.include? "a Jedi lightsaber"
       actions << "f - fight"
+    end
+
+    if inventory.include? "a Sith Holocron"
+      actions << "d - use the dark side"
     end
   end
 
@@ -168,6 +176,10 @@ while health_points > 0 and not escaped
     else
       puts "You failed to defeat your foe."
     end
+  elsif player_action == "d"
+    gundark = false || dark_jedi = false
+    dark_side = dark_side + 1
+    puts "You used the dark side to defeat your foe. You have taken one dark side point."
   else
     puts "Please input one of the game commands."
   end
@@ -176,6 +188,8 @@ end
 if health_points > 0
   puts "You escaped! Anakin lives to fight another day!"
   puts "You explored #{number_of_rooms_explored} rooms."
+elsif dark_side > 6
+  puts "You have fallen to the dark side. All hope is lost!"
 else
   puts "You did not make it out of the cave."
   puts "You explored #{number_of_rooms_explored} areas before your demise."
