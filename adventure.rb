@@ -83,7 +83,6 @@ end
 number_of_rooms_explored = 1
 loot1 = ""
 health_points = 10
-force_points = 10
 escaped = false
 enemy = false
 current_room = "create_room"
