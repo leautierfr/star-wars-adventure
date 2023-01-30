@@ -147,6 +147,7 @@ while health_points > 0 and not escaped
   elsif player_action == "h"
     puts "You used a Stimpack to recover one health point"
     health_points = health_points + 1
+    inventory.delete("a Stimpack")
   elsif player_action == "m"
     current_room = create_room
     number_of_rooms_explored = number_of_rooms_explored + 1
