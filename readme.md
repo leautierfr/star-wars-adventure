@@ -12,15 +12,7 @@ Ruby version: 3.1.2
 
 FINISHED
 
-- Rudimentary exploration
-- Rudimentary looting
-- Rudimentary inventory system
-- Rudimentary dice-based exploration and combat
-
-TO BE DEVELOPPED
-
-- Fully featured inventory system.
-- Usable items.
-- Improved combat.
-- Dark side system.
-- Error fixes
+- Exploration
+- Looting
+- Inventory system
+- Dice-based exploration and combat
