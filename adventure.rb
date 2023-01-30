@@ -93,7 +93,7 @@ dark_side = 0
 
 # Introduction
 
-puts "You are Anakin Skywalker. You are on a mission with your master, Obi-Wan Kenobi, on a mysterious planet occupied by the CIS. You were ambushed by the droids and you got seperated from Obi-Wan. You now find yourself in a cave system with nothing but your wits. Try and find your way out of the cave, using the items you loot to aid your escape."
+puts "You are Anakin Skywalker. You are on a mission with your master, Obi-Wan Kenobi, on a mysterious planet occupied by the CIS. You were ambushed by the droids and you got seperated from Obi-Wan. You now find yourself in a cave system with nothing but your wits. Try and find your way out of the cave, using the items you loot to aid your escape. But beware of the dark side..."
 puts "Watch out for foes that you may encounter!"
 puts "To play, type one of the given commands."
 
@@ -138,6 +138,7 @@ while health_points > 0 and not escaped
   # Enemy Attack
   player_action = gets.chomp
   if gundark && enemy_attack? || dark_jedi && enemy_attack?
+    puts "You are ambushed by a foe!"
     health_points = health_points - 1
     puts "You have taken damage!"
   end
@@ -145,7 +146,7 @@ while health_points > 0 and not escaped
   if player_action == "i"
     puts inventory
   elsif player_action == "h"
-    puts "You used a Stimpack to recover one health point"
+    puts "You used a Stimpack to recover one health point."
     health_points = health_points + 1
     inventory.delete("a Stimpack")
   elsif player_action == "m"
@@ -175,11 +176,14 @@ while health_points > 0 and not escaped
       puts "You defeated your foe!"
     else
       puts "You failed to defeat your foe."
+      enemy_attack?
+      puts "You have taken damage!"
     end
   elsif player_action == "d"
     gundark = false || dark_jedi = false
     dark_side = dark_side + 1
-    puts "You used the dark side to defeat your foe. You have taken one dark side point."
+    inventory.delete("a Sith Holocron")
+    puts "You used a Sith Holocron to channel the dark side and defeat your foe. You have taken one dark side point."
   else
     puts "Please input one of the game commands."
   end
