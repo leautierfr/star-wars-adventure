@@ -87,7 +87,7 @@ escaped = false
 enemy = false
 current_room = "create_room"
 inventory = []
-dark_side = 0
+dark_side = 6
 
 #################################################################
 
@@ -148,7 +148,7 @@ while health_points > 0 and not escaped
   elsif player_action == "h"
     puts "You used a Stimpack to recover one health point."
     health_points = health_points + 1
-    inventory.delete("a Stimpack")
+    inventory.delete_at(inventory.index("a Stimpack"))
   elsif player_action == "m"
     current_room = create_room
     number_of_rooms_explored = number_of_rooms_explored + 1
@@ -182,8 +182,11 @@ while health_points > 0 and not escaped
   elsif player_action == "d"
     gundark = false || dark_jedi = false
     dark_side = dark_side + 1
-    inventory.delete("a Sith Holocron")
+    inventory.delete_at(inventory.index("a Sith Holocron"))
     puts "You used a Sith Holocron to channel the dark side and defeat your foe. You have taken one dark side point."
+    if dark_side > 6
+      "You have fallen to the dark side. All hope is lost!"
+    end
   else
     puts "Please input one of the game commands."
   end
@@ -192,8 +195,6 @@ end
 if health_points > 0
   puts "You escaped! Anakin lives to fight another day!"
   puts "You explored #{number_of_rooms_explored} rooms."
-elsif dark_side > 6
-  puts "You have fallen to the dark side. All hope is lost!"
 else
   puts "You did not make it out of the cave."
   puts "You explored #{number_of_rooms_explored} areas before your demise."
