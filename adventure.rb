@@ -87,7 +87,7 @@ escaped = false
 enemy = false
 current_room = "create_room"
 inventory = []
-dark_side = 6
+dark_side = 0
 
 #################################################################
 
@@ -184,15 +184,17 @@ while health_points > 0 and not escaped
     dark_side = dark_side + 1
     inventory.delete_at(inventory.index("a Sith Holocron"))
     puts "You used a Sith Holocron to channel the dark side and defeat your foe. You have taken one dark side point."
-    if dark_side > 6
-      "You have fallen to the dark side. All hope is lost!"
-    end
   else
     puts "Please input one of the game commands."
   end
+
+  if dark_side > 6
+    puts "All hope is lost! You have fallen to the dark side."
+    break
+  end
 end
 
-if health_points > 0
+if health_points > 0 && dark_side < 6
   puts "You escaped! Anakin lives to fight another day!"
   puts "You explored #{number_of_rooms_explored} rooms."
 else
